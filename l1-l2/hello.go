@@ -17,25 +17,26 @@ func check(e error) {
 	}
 }
 
-func main() {
+func searchForWord(filepath string, target string) {
 
-	dat, err := os.ReadFile("dictionary.txt")
+	dat, err := os.ReadFile(string(filepath))
 	check(err)
 	fmt.Print(string(dat))
-
-	fmt.Println("An oasis of love and friendship.")
-
-	//input := "Due to your wasting of company resources by hogging the genetic recombinator, you have been selected to participate in an experimental biological enhancement program. All your debt is cleared and from now on your body will regenerate by itself. Can't say I envy you, though."
-	input := string(dat)
-
-	foundString := "re"
-
+	input := string(filepath)
+	foundString := string(target)
 	iterator := 1
 
 	for iterator <= len(input)-1 {
 		if foundString == input[iterator-1:iterator+1] {
-			fmt.Printf("found re @ %v\n", iterator-1)
+			fmt.Printf("found ", foundString, " @ %v\n", iterator-1)
 		}
 		iterator += 1
 	}
+}
+
+func main() {
+
+	fmt.Println("An oasis of love and friendship.")
+	searchForWord("dictionary.txt", "re")
+
 }
